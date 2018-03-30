@@ -13,6 +13,8 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        //comment
+
         Button medInfo = findViewById(R.id.medInfoButton);
         Button moodEval = findViewById(R.id.moodEvalButton);
         Button medTrack = findViewById(R.id.medTrackButton);
