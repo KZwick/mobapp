@@ -7,7 +7,7 @@
     android:background="@color/Background1"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.example.bobafeta.mha.LogIn">
+    tools:context="com.robboba.mha.LogIn">
 
     <TextView
         android:id="@+id/titleText"

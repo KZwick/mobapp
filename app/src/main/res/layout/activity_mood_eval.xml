@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background1"
-    tools:context="com.example.bobafeta.mha.MoodEval">
+    tools:context="com.robboba.mha.MoodEval">
 
     <TextView
         android:id="@+id/currMoodText"

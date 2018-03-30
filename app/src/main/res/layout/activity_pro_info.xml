@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Background1"
-    tools:context="com.example.bobafeta.mha.ProInfo">
+    tools:context="com.robboba.mha.ProInfo">
 
     <TextView
         android:id="@+id/proText"
