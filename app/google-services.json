@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "275267150947",
+    "firebase_url": "https://robbobamha.firebaseio.com",
+    "project_id": "robbobamha",
+    "storage_bucket": "robbobamha.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275267150947:android:6dee3fb577f1f730",
+        "android_client_info": {
+          "package_name": "com.robboba.mha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275267150947-oso83gvmvbur4p7cqcbguuf6mo4kepa7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.robboba.mha",
+            "certificate_hash": "c06c5b1b03a6738c415606a886b15b660d7ed88c"
+          }
+        },
+        {
+          "client_id": "275267150947-8h05k6jvu9tqf099elcg6t3ldanqcksd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMuIIQUjat7x9PIvohABrXvDt1UUebIr0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275267150947-8h05k6jvu9tqf099elcg6t3ldanqcksd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
