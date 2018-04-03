@@ -4,57 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Background1"
+    android:background="@drawable/bg"
     tools:context="com.robboba.mha.PillTrack">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_marginTop="64dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:fontFamily="@font/accuratist"
+        android:text="Pill Reminder"
+        android:textColor="@android:color/black"
+        android:textSize="38sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/clearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/dosageSpinner"
         android:layout_width="179dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="348dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="304dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <Spinner
-        android:id="@+id/yearSpinner"
+        android:id="@+id/amPmSpinner"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="316dp"
+        android:layout_marginBottom="292dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/daySpinner"
+        android:id="@+id/minuteSpinner"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="216dp"
@@ -64,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/monthSpinner"
+        android:id="@+id/hourSpinner"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="172dp"
@@ -72,28 +89,31 @@
         app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+-->
 
     <Spinner
         android:id="@+id/medNameSpinner"
-        android:layout_width="114dp"
+        android:layout_width="179dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.828"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.382" />
 
     <TextView
         android:id="@+id/medNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="240dp"
         android:text="Medication Name:"
         android:textColor="@android:color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
+        app:layout_constraintHorizontal_bias="0.187"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,9 +121,10 @@
         android:id="@+id/reminderText"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="380dp"
         android:text="Daily Reminder:"
         android:textColor="@android:color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,11 +134,12 @@
         android:id="@+id/dosageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="348dp"
+        android:layout_marginTop="304dp"
         android:text="Dosage Taken Today:"
         android:textColor="@android:color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -125,12 +147,47 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/remindButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="164dp"
+        android:text="Set Reminder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="176dp"
+        android:text="No Alarm Set"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancelRem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="164dp"
+        android:text="Cancel Alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

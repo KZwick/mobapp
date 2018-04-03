@@ -120,4 +120,5 @@
         <item>Report 4</item>
         <item>Report 5</item>
     </string-array>
+    <string name="title_activity_test_main_menu">TestMainMenu</string>
 </resources>

@@ -21,7 +21,8 @@
         <activity android:name=".MedInfo" />
         <activity android:name=".PillTrack" />
         <activity android:name=".UserReport" />
-        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".TestMainMenu"></activity>
     </application>
 
 </manifest>
