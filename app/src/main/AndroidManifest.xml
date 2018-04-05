@@ -9,20 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LogIn">
+        <activity android:name=".TestMainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MoodEval" />
-        <activity android:name=".ProInfo" />
-        <activity android:name=".MedInfo" />
-        <activity android:name=".PillTrack" />
-        <activity android:name=".UserReport" />
-        <activity android:name=".MainMenu" />
-        <activity android:name=".TestMainMenu"></activity>
+        <activity android:name=".MoodEval"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".ProInfo"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".MedInfo"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".PillTrack"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".UserReport"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".LogIn"
+            android:parentActivityName=".TestMainMenu">
+        </activity>
+        <activity android:name=".MainMenu"></activity>
     </application>
 
 </manifest>
