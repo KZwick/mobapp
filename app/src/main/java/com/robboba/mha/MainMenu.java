@@ -30,25 +30,12 @@ package com.google.firebase.example.fireeats;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener {
 
-    // Start of putting in code for Firebase ****************************
-    private static final String TAG = "MainMenu";
-    private static final int RC_SIGN_IN = 9001;
-    //private static final int LIMIT = 50; Specific to example length of List
 
-    private FirebaseAuth mAuth;
-    //private Query mQuery;
-    //private FilterDialogFragment mFilterDialog;
-    //private MainActivityViewModel mViewModel;
-
-    // End of Code for Firebase *****************************************
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-
-        //Firebase part
-        mAuth = FirebaseAuth.getInstance();
 
 
         Button medInfo = findViewById(R.id.medInfoButton);
@@ -66,13 +53,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener 
         logOut.setOnClickListener(this);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-    }
+
 
     public void onClick(View view) {
         switch (view.getId()) {
