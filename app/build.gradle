@@ -21,8 +21,10 @@ android {
 
 dependencies {
     //Firebase firestore = MHA
-    //compile       'com.google.firebase:firebase-firestore:12.0.1'
+    implementation       'com.google.firebase:firebase-firestore:12.0.1'
     //implementation'com.google.firebase:firebase-MHA:12.0.1'
+
+
 
     //other Firebase / Googleplay services
     implementation 'com.google.firebase:firebase-core:12.0.1'
