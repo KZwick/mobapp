@@ -5,19 +5,23 @@ package com.robboba.mha.model;
  * User POJO
  */
 
-//import com.google.firebase.firestore.IgnoreExtraProperties;
+import com.google.firebase.firestore.IgnoreExtraProperties;
 
-//@IgnoreExtraProperties
+@IgnoreExtraProperties
 public class User {
     public static final String FIELD_FIRSTNAME = "firstname";
     public static final String FIELD_LASTNAME = "lastname";
     public static final String FIELD_EMAIL = "email";
     public static final String FIELD_PHONE = "phone";
+
     public static final String FIELD_ADDRESS1 = "address1";
     public static final String FIELD_ADDRESS2= "address2";
     public static final String FIELD_CITY = "city";
     public static final String FIELD_AGE = "age";
+
     public static final String FIELD_GENDER = "gender";
+    // Height in meters.
+    // Weight in kilograms.
 
     private String firstname;
     private String lastname;
