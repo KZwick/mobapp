@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +47,15 @@ public class TestMainMenu extends AppCompatActivity {
 
         // init firebase
         mAuth = FirebaseAuth.getInstance();
+        // Getting the firebase user
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String UserName = user.getDisplayName();
+            String UserEmail = user.getEmail();
+            TextView User = findViewById(R.id.textViewUser);
+            User.setText(UserEmail);
+
+        }
     }
 
     @Override
