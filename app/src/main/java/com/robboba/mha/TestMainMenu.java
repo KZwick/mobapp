@@ -10,13 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-
-//import com.robboba.mha.viewmodel.MainActivityViewModel;
+import com.robboba.mha.model.SimpleUser;
 
 import java.util.Collections;
 
@@ -30,7 +32,10 @@ public class TestMainMenu extends AppCompatActivity {
     //private static final int LIMIT = 50; //Specific to example length of List
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore mFirestore;
+    private FirebaseUser mUser;
     private Query mQuery;
+    private SimpleUser sUser = new SimpleUser();
     //private FilterDialogFragment mFilterDialog;
     //private MainActivityViewModel mViewModel;
     //private TestMainMenuViewModel mViewModel;
@@ -47,15 +52,39 @@ public class TestMainMenu extends AppCompatActivity {
 
         // init firebase
         mAuth = FirebaseAuth.getInstance();
-        // Getting the firebase user
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            String UserName = user.getDisplayName();
-            String UserEmail = user.getEmail();
-            TextView User = findViewById(R.id.textViewUser);
-            User.setText(UserEmail);
+        // Enable Firestore logging
+        FirebaseFirestore.setLoggingEnabled(true);
+        // Getting the firebase user, puttting data in (SimpleUser) sUser
+        getUser();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUser();
+    }
+
+    private void getUser(){
+        mUser=FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser != null) {
+            String UserName = mUser.getDisplayName();
+            sUser.setName(UserName);
+            String UserEmail = mUser.getEmail();
+            sUser.setEmail(UserEmail);
+            TextView UserTextView = findViewById(R.id.textViewUser);
+            // update the Text View
+            UserTextView.setText(UserEmail);
+            // add the user to the database.
+            //addUser();
         }
+    }
+
+    private void addUser(){
+        // Get a reference to the Users collection
+        CollectionReference Users = mFirestore.collection("Users");
+
+        // Add a new document to the restaurants collection
+        Users.add(sUser);
     }
 
     @Override
@@ -89,6 +118,10 @@ public class TestMainMenu extends AppCompatActivity {
         //mViewModel.setIsSigningIn(true);
     }
 
+    public void onClickTextUser(View view){
+        //Toast.makeText(this, "Started Click User", Toast.LENGTH_SHORT).show();
+        startSignIn();
+    }
 
     private void setSingleEvent(GridLayout mainGrid) {
         for (int i = 0; i < mainGrid.getChildCount(); i++) {
@@ -123,6 +156,9 @@ public class TestMainMenu extends AppCompatActivity {
                         case R.id.logOutButton:
                             //Intent intent14 = new Intent(getApplicationContext(), LogIn.class);
                             //startActivity(intent14);
+                            startSignIn();
+                            break;
+                        case R.id.textViewUser:
                             startSignIn();
                             break;
                     }
