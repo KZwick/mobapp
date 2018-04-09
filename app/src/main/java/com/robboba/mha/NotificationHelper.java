@@ -10,6 +10,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 public class NotificationHelper extends ContextWrapper {
+
     public static final String ch1 = "channel1 id";
     public static final String ch1Name = "chan1";
 

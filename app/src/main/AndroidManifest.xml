@@ -35,6 +35,8 @@
             android:parentActivityName=".TestMainMenu">
         </activity>
         <activity android:name=".MainMenu"></activity>
+
+        <receiver android:name=".AlertReceiver"/>
     </application>
 
 </manifest>

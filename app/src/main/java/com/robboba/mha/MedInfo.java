@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,8 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+
+    private EditText medName, dos, pillFreq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,10 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         Button back = findViewById(R.id.backButton);
 
         back.setOnClickListener(this);
+
+        medName = (EditText) findViewById(R.id.medNameEditText);
+        dos = (EditText) findViewById(R.id.dosageEditText);
+        pillFreq = (EditText) findViewById(R.id.pillFreqEditText);
 
         /*Spinner monthSpin = (Spinner) findViewById(R.id.monthSpinner);
 
@@ -69,6 +77,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
+
     @SuppressWarnings("deprecation")
     public void setDate(View view){
         showDialog(999);
@@ -92,5 +101,24 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
 
     private void showDate(int year, int month, int day){
         dateView.setText(new StringBuilder().append(day).append("/").append(month+1).append("/").append(year));
+    }
+
+    /*
+    private void clearForm(ViewGroup group){
+        for(int i = 0, count = group.getChildCount(); i < count; ++i){
+            View view = group.getChildAt(i);
+            if(view instanceof EditText){
+                ((EditText)view).setText("");
+            }
+            if(view instanceof ViewGroup && (((ViewGroup)view).getChildCount()>0))
+                clearForm((ViewGroup)view);
+        }
+    }
+    */
+
+    public void clear(View v){
+        medName.setText("");
+        dos.setText("");
+        pillFreq.setText("");
     }
 }

@@ -83,15 +83,6 @@ public class PillTrack extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-    public void onClick (View view){
-        switch (view.getId()){
-            case R.id.backButton:
-                Intent intent = new Intent(this, TestMainMenu.class);
-                startActivity(intent);
-                break;
-        }
-    }
-
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Calendar c = Calendar.getInstance();
@@ -101,6 +92,15 @@ public class PillTrack extends AppCompatActivity implements View.OnClickListener
 
         updateTimeText(c);
         startAlarm(c);
+    }
+
+    public void onClick (View view){
+        switch (view.getId()){
+            case R.id.backButton:
+                Intent intent = new Intent(this, TestMainMenu.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     private void updateTimeText(Calendar c){

@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class ProInfo extends AppCompatActivity implements View.OnClickListener{
+
+    private EditText name, tel, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,10 @@ public class ProInfo extends AppCompatActivity implements View.OnClickListener{
         Button back = findViewById(R.id.backButton);
 
         back.setOnClickListener(this);
+
+        name = (EditText) findViewById(R.id.nameEditText);
+        tel = (EditText) findViewById(R.id.telEditText);
+        address = (EditText) findViewById(R.id.addressEditText);
 
         Spinner proSpin = (Spinner) findViewById(R.id.proSpinner);
 
@@ -33,5 +40,11 @@ public class ProInfo extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
         }
+    }
+
+    public void clear(View v){
+        name.setText("");
+        tel.setText("");
+        address.setText("");
     }
 }
