@@ -11,26 +11,29 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.robboba.mha.model.SimpleUser;
+//import com.google.api.core.ApiFuture;             ERROR: does not Exist
+//import com.google.cloud.firestore.WriteResult;    ERROR: does not Exist
 
-import java.util.Collections;
+import com.firebase.ui.auth.AuthUI;
+import com.robboba.mha.model.SimpleUser; // sUser
 
 public class TestMainMenu extends AppCompatActivity {
 
     GridLayout mainGrid;
-
     // Start of putting in code for Firebase ****************************
     private static final String TAG = "MainMenu";
     private static final int RC_SIGN_IN = 9001;
     //private static final int LIMIT = 50; //Specific to example length of List
-
     private FirebaseAuth mAuth;
     private FirebaseFirestore mFirestore;
     private FirebaseUser mUser;
@@ -50,8 +53,10 @@ public class TestMainMenu extends AppCompatActivity {
         mainGrid = (GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
 
-        // init firebase
+        // Initialize firebase
         mAuth = FirebaseAuth.getInstance();
+        // Initialize Firestore
+        mFirestore = FirebaseFirestore.getInstance();
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
         // Getting the firebase user, puttting data in (SimpleUser) sUser
@@ -68,23 +73,47 @@ public class TestMainMenu extends AppCompatActivity {
         mUser=FirebaseAuth.getInstance().getCurrentUser();
         if (mUser != null) {
             String UserName = mUser.getDisplayName();
-            sUser.setName(UserName);
             String UserEmail = mUser.getEmail();
+            sUser.setName(UserName);
             sUser.setEmail(UserEmail);
             TextView UserTextView = findViewById(R.id.textViewUser);
             // update the Text View
             UserTextView.setText(UserEmail);
+            UserTextView.setText(sUser.getEmail());
             // add the user to the database.
-            //addUser();
+            Toast.makeText(this, "About to Start Add User", Toast.LENGTH_LONG).show();
+            addUser();
         }
     }
 
-    private void addUser(){
+    private void addUser() {
+        // Using the Friendly Eats loop creating restaurants
         // Get a reference to the Users collection
         CollectionReference Users = mFirestore.collection("Users");
 
-        // Add a new document to the restaurants collection
-        Users.add(sUser);
+        // Add a new document to the collection
+        // Using the email for the document ID makes then Unique
+        Users.document(sUser.getEmail()).set(sUser);
+
+        /**********Current Database Rules **************************
+         service cloud.firestore {
+            match /databases/{database}/documents {
+                // Users:
+                //   - Authenticated user can read
+                //   - Authenticated user can create
+                //   - Validate updates (if the email match)
+                //   - Deletes are not allowed
+            match /Users/{userId} {
+                allow read, create: if request.auth.uid != null;
+                allow update: if request.auth.uid != null
+                    && request.resource.data.email == resource.data.email
+                allow delete: if false;
+                }
+            }
+         }
+        *********************************************************/
+
+
     }
 
     @Override
@@ -119,7 +148,7 @@ public class TestMainMenu extends AppCompatActivity {
     }
 
     public void onClickTextUser(View view){
-        //Toast.makeText(this, "Started Click User", Toast.LENGTH_SHORT).show();
+
         startSignIn();
     }
 
@@ -170,6 +199,7 @@ public class TestMainMenu extends AppCompatActivity {
     }
 }
 //**************************************************************************************************
+//Toast.makeText(this, "Started Click User", Toast.LENGTH_SHORT).show();
 // in OnStart()
 /* // Apply filters
         onFilter(mViewModel.getFilters());
