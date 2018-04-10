@@ -38,6 +38,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     private EditText medName, dos, pillFreq;
     // for Firestore
     private FirebaseFirestore mFirestore;
+    private Calendar calRefill = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +106,10 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             showDate(year, month, dayOfMonth);
+            // for Firstore
+            calRefill.set(Calendar.YEAR, year);
+            calRefill.set(Calendar.MONTH,month);
+            calRefill.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         }
     };
 
@@ -152,9 +157,9 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         String sDosage = dos.getText().toString();
         String sPillsPer = pillFreq.getText().toString();
         // Using java.util.Date
-        Date refillDate = calendar.getTime(); // gets the present date and time.
+        java.util.Date refillDate = calRefill.getTime(); // calendar in the
         // ************* Need to get the date.
-        //Date refillDate =  dateView.toString().to
+
 
         // change data to be ready for Firestore via the Model for the data
         // get the current user and their email
@@ -179,7 +184,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         // add the data to the above sub collection
         UserMeds.add(oMed);
 
-        Toast.makeText(this, "Meddication Added", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Medication Added", Toast.LENGTH_LONG).show();
 
         clear(view);
 
