@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MHA.iml" filepath="$PROJECT_DIR$/MHA.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mobapp.iml" filepath="$PROJECT_DIR$/mobapp.iml" />
+      <module fileurl="file://D:\1 TRU COMP\COMP 2160\Labs\MHA\mobapp.iml" filepath="D:\1 TRU COMP\COMP 2160\Labs\MHA\mobapp.iml" />
     </modules>
   </component>
 </project>

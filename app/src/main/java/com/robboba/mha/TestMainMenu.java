@@ -81,7 +81,7 @@ public class TestMainMenu extends AppCompatActivity {
             UserTextView.setText(UserEmail);
             UserTextView.setText(sUser.getEmail());
             // add the user to the database.
-            Toast.makeText(this, "About to Start Add User", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "About to Start Add User", Toast.LENGTH_LONG).show();
             addUser();
         }
     }
@@ -94,6 +94,7 @@ public class TestMainMenu extends AppCompatActivity {
         // Add a new document to the collection
         // Using the email for the document ID makes then Unique
         Users.document(sUser.getEmail()).set(sUser);
+        Log.v("Kevin","User is: " + mUser +" Email: "+ sUser.getEmail());
 
         /**********Current Database Rules **************************
          service cloud.firestore {
@@ -106,14 +107,16 @@ public class TestMainMenu extends AppCompatActivity {
             match /Users/{userId} {
                 allow read, create: if request.auth.uid != null;
                 allow update: if request.auth.uid != null
-                    && request.resource.data.email == resource.data.email
+
                 allow delete: if false;
                 }
             }
          }
+            this line was not doing what I what it to do.
+            IE users can only unpate their own user records.
+            ID the Users Document ID matches the Authorized's email
+            && request.resource.data.email == resource.data.email
         *********************************************************/
-
-
     }
 
     @Override
@@ -161,35 +164,41 @@ public class TestMainMenu extends AppCompatActivity {
                 public void onClick(View v) {
                     /*Intent intent = new Intent(getApplicationContext(), MedInfo.class);
                     startActivity(intent);*/
-                    switch (v.getId()) {
-                        case R.id.medInfoButton:
-                            Intent intent9 = new Intent(getApplicationContext(), MedInfo.class);
-                            startActivity(intent9);
-                            break;
-                        case R.id.moodEvalButton:
-                            Intent intent10 = new Intent(getApplicationContext(), MoodEval.class);
-                            startActivity(intent10);
-                            break;
-                        case R.id.medTrackButton:
-                            Intent intent11 = new Intent(getApplicationContext(), PillTrack.class);
-                            startActivity(intent11);
-                            break;
-                        case R.id.proInfoButton:
-                            Intent intent12 = new Intent(getApplicationContext(), ProInfo.class);
-                            startActivity(intent12);
-                            break;
-                        case R.id.userRepButton:
-                            Intent intent13 = new Intent(getApplicationContext(), UserReport.class);
-                            startActivity(intent13);
-                            break;
-                        case R.id.logOutButton:
-                            //Intent intent14 = new Intent(getApplicationContext(), LogIn.class);
-                            //startActivity(intent14);
-                            startSignIn();
-                            break;
-                        case R.id.textViewUser:
-                            startSignIn();
-                            break;
+                    // check for a authorized user
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                        switch (v.getId()) {
+                            case R.id.medInfoButton:
+                                Intent intent9 = new Intent(getApplicationContext(), MedInfo.class);
+                                startActivity(intent9);
+                                break;
+                            case R.id.moodEvalButton:
+                                Intent intent10 = new Intent(getApplicationContext(), MoodEval.class);
+                                startActivity(intent10);
+                                break;
+                            case R.id.medTrackButton:
+                                Intent intent11 = new Intent(getApplicationContext(), PillTrack.class);
+                                startActivity(intent11);
+                                break;
+                            case R.id.proInfoButton:
+                                Intent intent12 = new Intent(getApplicationContext(), ProInfo.class);
+                                startActivity(intent12);
+                                break;
+                            case R.id.userRepButton:
+                                Intent intent13 = new Intent(getApplicationContext(), UserReport.class);
+                                startActivity(intent13);
+                                break;
+                            case R.id.logOutButton:
+                                //Intent intent14 = new Intent(getApplicationContext(), LogIn.class);
+                                //startActivity(intent14);
+                                startSignIn();
+                                break;
+                            case R.id.textViewUser:
+                                startSignIn();
+                                break;
+                        }
+                    }
+                    else{
+                        startSignIn();
                     }
                 }
             });

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,8 +16,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.robboba.mha.model.Medication;
+
 import java.lang.reflect.Array;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MedInfo extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,11 +36,15 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     private int year, month, day;
 
     private EditText medName, dos, pillFreq;
+    // for Firestore
+    private FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_med_info);
+
+        mFirestore = FirebaseFirestore.getInstance();
 
         //March 31 add
         dateView = (TextView) findViewById(R.id.textView4);
@@ -42,29 +55,22 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         showDate(year, month+1, day);
 
         Button back = findViewById(R.id.backButton);
-
         back.setOnClickListener(this);
+        Button submit = findViewById(R.id.submitButton);
+        submit.setOnClickListener(this);
 
         medName = (EditText) findViewById(R.id.medNameEditText);
         dos = (EditText) findViewById(R.id.dosageEditText);
         pillFreq = (EditText) findViewById(R.id.pillFreqEditText);
 
         /*Spinner monthSpin = (Spinner) findViewById(R.id.monthSpinner);
-
         ArrayAdapter<CharSequence> monthAdapter = ArrayAdapter.createFromResource(this, R.array.month, android.R.layout.simple_spinner_item);
-
         monthSpin.setAdapter(monthAdapter);
-
         Spinner daySpin = (Spinner) findViewById(R.id.daySpinner);
-
         ArrayAdapter<CharSequence> dayAdapter = ArrayAdapter.createFromResource(this, R.array.day, android.R.layout.simple_spinner_item);
-
         daySpin.setAdapter(dayAdapter);
-
         Spinner yearSpin = (Spinner) findViewById(R.id.yearSpinner);
-
         ArrayAdapter<CharSequence> yearAdapter = ArrayAdapter.createFromResource(this, R.array.year, android.R.layout.simple_spinner_item);
-
         yearSpin.setAdapter(yearAdapter);*/
     }
 
@@ -73,6 +79,9 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
             case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
+                break;
+            case R.id.submitButton:
+                submitData();
                 break;
         }
     }
@@ -120,5 +129,68 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         medName.setText("");
         dos.setText("");
         pillFreq.setText("");
+    }
+
+    // writing the data to Firebase
+    /*   data in method
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private TextView dateView;
+    private int year, month, day;
+    private EditText medName, dos, pillFreq;
+
+     ** data in Model for firebase.
+    public static final String FIELD_MEDNAME = "medname";
+    public static final String FIELD_MEDDOSAGE = "meddosage";
+    public static final String FIELD_DOSESPERDAY = "dosesperday";
+    public static final String FIELD_REFILLDATE = "refilldate";
+     */
+    private void submitData(){
+        Toast.makeText(this, "Starting add to Meddications", Toast.LENGTH_LONG).show();
+        // Convert input data to Strings and java.util.Date
+        String sMedication = medName.toString();
+        String sDosage = dos.toString();
+        String sPillsPer = pillFreq.toString();
+        // Using java.util.Date
+        Date refillDate = calendar.getTime();
+
+        // change data to be ready for Firestore via the Model for the data
+        // get the current user and their email
+        FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
+        String mUserEmail = mUser.getEmail();
+
+        // put the input data into the Model
+        Medication oMed = new Medication();
+        oMed.setMedname(sMedication);
+        oMed.setMeddosage(sDosage);
+        oMed.setMedinstruct(sPillsPer);
+        oMed.setRefilldate(refillDate);
+
+        // Get a reference to the Users collection
+        // the document using their email, then collection "Medications"
+        CollectionReference UserMeds = mFirestore.collection("Users")
+                .document(mUserEmail).collection("Medications");
+
+        // add the data to the above sub collection
+        UserMeds.add(oMed);
+
+        Toast.makeText(this, "User is: " + mUser +" Email: "+ mUserEmail +" CL: "+UserMeds, Toast.LENGTH_LONG).show();
+        Log.v("Kevin","User is: " + mUser +" Email: "+ mUserEmail + " CL: "+UserMeds);
+
+        /*
+        CollectionReference subRef = mFirestore.collection("restaurants")
+        .document("abc123")
+        .collection("ratings");
+         */
+        // Add a new document to the collection
+        // Using the email for the document ID makes then Unique
+        // example  Users.document(sUser.getEmail()).set(sUser);
+        // or Users.document(mUserEmail).set(sUser);
+
+        //Users.document(mUserEmail).collection("Medications").add(oMed);
+        // the first collection is "Users"
+        // the douments had the ID "users email", with fields
+        // the subcollection is "Medications"
+        // this ducment has a auto generated ID, with fields
     }
 }
