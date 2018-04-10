@@ -107,9 +107,13 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             showDate(year, month, dayOfMonth);
             // for Firstore
+            int iZero = 0;
             calRefill.set(Calendar.YEAR, year);
             calRefill.set(Calendar.MONTH,month);
             calRefill.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            calRefill.set(Calendar.HOUR_OF_DAY, iZero);
+            calRefill.set(Calendar.MINUTE, iZero);
+            calRefill.set(Calendar.SECOND, iZero);
         }
     };
 
@@ -157,9 +161,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         String sDosage = dos.getText().toString();
         String sPillsPer = pillFreq.getText().toString();
         // Using java.util.Date
-        java.util.Date refillDate = calRefill.getTime(); // calendar in the
-        // ************* Need to get the date.
-
+        java.util.Date refillDate = calRefill.getTime();
 
         // change data to be ready for Firestore via the Model for the data
         // get the current user and their email
@@ -174,7 +176,6 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         oMed.setRefilldate(refillDate);
 
         //String sToast = "Med info name: "+ oMed.getMedname()+ " Dose: " + oMed.getMeddosage() + " Instuct: "+oMed.getMedname();
-        Toast.makeText(this, "Meddication Added", Toast.LENGTH_LONG).show();
 
         // Get a reference to the Users collection
         // the document using their email, then collection "Medications"
