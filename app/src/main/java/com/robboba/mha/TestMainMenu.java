@@ -60,6 +60,11 @@ public class TestMainMenu extends AppCompatActivity {
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
         // Getting the firebase user, puttting data in (SimpleUser) sUser
+
+        if (shouldStartSignIn()){
+            TextView UserTextView = findViewById(R.id.textViewUser);
+            UserTextView.setText("Log In");
+        }
         getUser();
     }
 
@@ -79,7 +84,7 @@ public class TestMainMenu extends AppCompatActivity {
             TextView UserTextView = findViewById(R.id.textViewUser);
             // update the Text View
             UserTextView.setText(UserEmail);
-            UserTextView.setText(sUser.getEmail());
+            //UserTextView.setText(sUser.getEmail()); // same as above line
             // add the user to the database.
             //Toast.makeText(this, "About to Start Add User", Toast.LENGTH_LONG).show();
             addUser();

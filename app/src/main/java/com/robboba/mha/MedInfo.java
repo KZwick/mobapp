@@ -81,7 +81,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case R.id.submitButton:
-                submitData();
+                submitData(view);
                 break;
         }
     }
@@ -90,7 +90,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     @SuppressWarnings("deprecation")
     public void setDate(View view){
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,14 +145,16 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     public static final String FIELD_DOSESPERDAY = "dosesperday";
     public static final String FIELD_REFILLDATE = "refilldate";
      */
-    private void submitData(){
-        Toast.makeText(this, "Starting add to Meddications", Toast.LENGTH_LONG).show();
+    private void submitData(View view){
+
         // Convert input data to Strings and java.util.Date
-        String sMedication = medName.toString();
-        String sDosage = dos.toString();
-        String sPillsPer = pillFreq.toString();
+        String sMedication = medName.getText().toString();
+        String sDosage = dos.getText().toString();
+        String sPillsPer = pillFreq.getText().toString();
         // Using java.util.Date
-        Date refillDate = calendar.getTime();
+        Date refillDate = calendar.getTime(); // gets the present date and time.
+        // ************* Need to get the date.
+        //Date refillDate =  dateView.toString().to
 
         // change data to be ready for Firestore via the Model for the data
         // get the current user and their email
@@ -166,6 +168,9 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         oMed.setMedinstruct(sPillsPer);
         oMed.setRefilldate(refillDate);
 
+        //String sToast = "Med info name: "+ oMed.getMedname()+ " Dose: " + oMed.getMeddosage() + " Instuct: "+oMed.getMedname();
+        Toast.makeText(this, "Meddication Added", Toast.LENGTH_LONG).show();
+
         // Get a reference to the Users collection
         // the document using their email, then collection "Medications"
         CollectionReference UserMeds = mFirestore.collection("Users")
@@ -174,8 +179,12 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         // add the data to the above sub collection
         UserMeds.add(oMed);
 
-        Toast.makeText(this, "User is: " + mUser +" Email: "+ mUserEmail +" CL: "+UserMeds, Toast.LENGTH_LONG).show();
-        Log.v("Kevin","User is: " + mUser +" Email: "+ mUserEmail + " CL: "+UserMeds);
+        Toast.makeText(this, "Meddication Added", Toast.LENGTH_LONG).show();
+
+        clear(view);
+
+        //Toast.makeText(this, "User is: " + mUser +" Email: "+ mUserEmail +" CL: "+UserMeds, Toast.LENGTH_LONG).show();
+        //Log.v("Kevin","User is: " + mUser +" Email: "+ mUserEmail + " CL: "+UserMeds);
 
         /*
         CollectionReference subRef = mFirestore.collection("restaurants")
