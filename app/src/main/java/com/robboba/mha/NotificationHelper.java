@@ -51,8 +51,8 @@ public class NotificationHelper extends ContextWrapper {
 
     public NotificationCompat.Builder getChannelNotification(){
         return new NotificationCompat.Builder(getApplicationContext(), ch1)
-                .setContentTitle("Test Title")
-                .setContentText("Test text")
+                .setContentTitle("Prescription Reminder")
+                .setContentText("It's time to take your T3")
                 .setSmallIcon(R.drawable.ic_one);
     }
 }
