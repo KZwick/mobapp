@@ -34,6 +34,9 @@
         <activity android:name=".LogIn"
             android:parentActivityName=".TestMainMenu">
         </activity>
+        <activity android:name=".MedsList"
+            android:parentActivityName=".MedInfo">
+        </activity>
         <activity android:name=".MainMenu"></activity>
 
         <receiver android:name=".AlertReceiver"/>
