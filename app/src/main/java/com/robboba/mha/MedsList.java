@@ -12,7 +12,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.api.core.ApiFutures;
+//import com.google.api.core.ApiFutures;
 
 /**
  * Created by kevin on 2018-04-10.
@@ -59,7 +59,7 @@ public class MedsList extends AppCompatActivity {
         mQuery = UserMeds.orderBy("medname", Query.Direction.DESCENDING)
                 .limit(LIMIT);
 
-        ApiFuture<QuerySnapshot> querySnapshot = mQuery.get();
+        //ApiFuture<QuerySnapshot> querySnapshot = mQuery.get();
 
         Log.v("potato",mQuery.);
 
