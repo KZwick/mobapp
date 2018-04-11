@@ -18,7 +18,7 @@ import android.widget.TimePicker;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class PillTrack extends AppCompatActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener{
+public class PillTrack extends AppCompatActivity implements /*View.OnClickListener,*/ TimePickerDialog.OnTimeSetListener{
 
     private TextView mTextView;
 
@@ -27,9 +27,9 @@ public class PillTrack extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pill_track);
 
-        Button back = findViewById(R.id.backButton);
+        //Button back = findViewById(R.id.backButton);
 
-        back.setOnClickListener(this);
+        //back.setOnClickListener(this);
 
         mTextView = findViewById(R.id.textView5);
 
@@ -94,14 +94,14 @@ public class PillTrack extends AppCompatActivity implements View.OnClickListener
         startAlarm(c);
     }
 
-    public void onClick (View view){
+    /*public void onClick (View view){
         switch (view.getId()){
             case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
                 break;
         }
-    }
+    }*/
 
     private void updateTimeText(Calendar c){
         String timeText = "Alarm set for: ";

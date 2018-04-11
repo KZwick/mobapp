@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class UserReport extends AppCompatActivity implements View.OnClickListener{
+public class UserReport extends AppCompatActivity /*implements View.OnClickListener*/{
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -36,9 +36,9 @@ public class UserReport extends AppCompatActivity implements View.OnClickListene
         showDate(year, month+1, day);
         showDate2(year, month+1, day);
 
-        Button back = findViewById(R.id.backButton);
+        //Button back = findViewById(R.id.backButton);
 
-        back.setOnClickListener(this);
+        //back.setOnClickListener(this);
 
         Spinner userSpin = (Spinner) findViewById(R.id.userSpinner);
 
@@ -89,14 +89,14 @@ public class UserReport extends AppCompatActivity implements View.OnClickListene
         fromYearSpin.setAdapter(fromYearAdapter);*/
     }
 
-    public void onClick (View view){
+    /*public void onClick (View view){
         switch (view.getId()){
             case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
                 break;
         }
-    }
+    }*/
 
     @SuppressWarnings("deprecation")
     public void setDate(View view){

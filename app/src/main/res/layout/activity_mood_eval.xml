@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="222dp"
         android:text="My Current Mood Is:"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -87,7 +87,7 @@
 
     <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="354dp"
+        android:layout_height="348dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="312dp"
+            android:layout_marginTop="282dp"
             android:text="Good"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="312dp"
+            android:layout_marginTop="282dp"
             android:text="Medium"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="312dp"
+            android:layout_marginTop="282dp"
             android:text="Bad"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -230,7 +230,7 @@
         android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Submit"
+        android:background="@drawable/button_submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
@@ -241,12 +241,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Clear"
+        android:background="@drawable/button_clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!--
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -259,6 +260,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+    -->
 
 
 
