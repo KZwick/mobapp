@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Submit"
+        android:background="@drawable/button_submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Clear"
+        android:background="@drawable/button_clear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.904"
@@ -50,7 +50,7 @@
         android:id="@+id/reportSpinner"
         android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="258dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:id="@+id/userSpinner"
         android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="202dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
         android:id="@+id/userText"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
-        android:layout_marginTop="232dp"
+        android:layout_marginTop="202dp"
         android:text="Select User:"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -83,7 +83,7 @@
         android:id="@+id/reportText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="258dp"
         android:text="Report Type:"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -96,7 +96,7 @@
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="348dp"
+        android:layout_marginTop="308dp"
         android:text="Date Range"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -105,6 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
@@ -115,6 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+    -->
 
     <Button
         android:id="@+id/fromButton"
@@ -122,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
         android:onClick="setDate"
-        android:text="From"
+        android:background="@drawable/button_from"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
@@ -134,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="124dp"
         android:onClick="setDate2"
-        android:text="To"
+        android:background="@drawable/button_to"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.226"
@@ -163,7 +165,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.646"
+        app:layout_constraintHorizontal_bias="0.689"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

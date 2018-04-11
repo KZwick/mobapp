@@ -55,8 +55,8 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
 
-        Button back = findViewById(R.id.backButton);
-        back.setOnClickListener(this);
+        //Button back = findViewById(R.id.backButton);
+        //back.setOnClickListener(this);
         Button submit = findViewById(R.id.submitButton);
         submit.setOnClickListener(this);
 
@@ -77,10 +77,10 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
 
     public void onClick (View view){
         switch (view.getId()){
-            case R.id.backButton:
+            /*case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
-                break;
+                break;*/
             case R.id.submitButton:
                 submitData(view);
                 break;

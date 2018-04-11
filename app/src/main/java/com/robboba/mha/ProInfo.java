@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class ProInfo extends AppCompatActivity implements View.OnClickListener{
+public class ProInfo extends AppCompatActivity /*implements View.OnClickListener*/{
 
     private EditText name, tel, address;
 
@@ -18,9 +18,9 @@ public class ProInfo extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pro_info);
 
-        Button back = findViewById(R.id.backButton);
+        //Button back = findViewById(R.id.backButton);
 
-        back.setOnClickListener(this);
+        //back.setOnClickListener(this);
 
         name = (EditText) findViewById(R.id.nameEditText);
         tel = (EditText) findViewById(R.id.telEditText);
@@ -33,14 +33,14 @@ public class ProInfo extends AppCompatActivity implements View.OnClickListener{
         proSpin.setAdapter(proAdapter);
     }
 
-    public void onClick (View view){
+    /*public void onClick (View view){
         switch (view.getId()){
             case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
                 break;
         }
-    }
+    }*/
 
     public void clear(View v){
         name.setText("");

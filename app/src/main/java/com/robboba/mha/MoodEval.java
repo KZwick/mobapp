@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 
-public class MoodEval extends AppCompatActivity implements View.OnClickListener{
+public class MoodEval extends AppCompatActivity /*implements View.OnClickListener*/{
 
 
     @Override
@@ -19,9 +19,9 @@ public class MoodEval extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_eval);
 
-        Button back = findViewById(R.id.backButton);
+        //Button back = findViewById(R.id.backButton);
 
-        back.setOnClickListener(this);
+        //back.setOnClickListener(this);
 
         Spinner anxietySpin = (Spinner) findViewById(R.id.anxietySpinner);
 
@@ -42,12 +42,12 @@ public class MoodEval extends AppCompatActivity implements View.OnClickListener{
         stressSpin.setAdapter(stressAdapter);
     }
 
-    public void onClick (View view){
+    /*public void onClick (View view){
         switch (view.getId()){
             case R.id.backButton:
                 Intent intent = new Intent(this, TestMainMenu.class);
                 startActivity(intent);
                 break;
         }
-    }
+    }*/
 }
