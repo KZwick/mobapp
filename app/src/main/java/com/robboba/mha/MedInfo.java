@@ -84,6 +84,10 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
             case R.id.submitButton:
                 submitData(view);
                 break;
+            case R.id.medListButton:
+                Intent intent21 = new Intent(getApplicationContext(), MedsList.class);
+                startActivity(intent21);
+                break;
         }
     }
 
