@@ -102,25 +102,7 @@ public class TestMainMenu extends AppCompatActivity {
         Log.v("Kevin","User is: " + mUser +" Email: "+ sUser.getEmail());
 
         /**********Current Database Rules **************************
-         service cloud.firestore {
-            match /databases/{database}/documents {
-                // Users:
-                //   - Authenticated user can read
-                //   - Authenticated user can create
-                //   - Validate updates (if the email match)
-                //   - Deletes are not allowed
-            match /Users/{userId} {
-                allow read, create: if request.auth.uid != null;
-                allow update: if request.auth.uid != null
 
-                allow delete: if false;
-                }
-            }
-         }
-            this line was not doing what I what it to do.
-            IE users can only unpate their own user records.
-            ID the Users Document ID matches the Authorized's email
-            && request.resource.data.email == resource.data.email
         *********************************************************/
     }
 

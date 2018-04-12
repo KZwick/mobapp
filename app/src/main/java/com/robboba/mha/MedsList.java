@@ -44,6 +44,8 @@ public class MedsList extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
 
+        Log.v("List","Med List intent did onCreate");
+
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
         // Initialize Firestore
@@ -52,13 +54,16 @@ public class MedsList extends AppCompatActivity {
         FirebaseFirestore.setLoggingEnabled(true);
         // Getting the firebase user
         mUser = FirebaseAuth.getInstance().getCurrentUser();
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Log.v("List","Med List intent did onStart");
+
+        //FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     private void GetMedListQuery(){
