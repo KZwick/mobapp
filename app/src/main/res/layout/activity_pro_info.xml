@@ -86,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
         android:background="@drawable/button_submit"
+        android:clickable="true"
+        android:onClick="clickSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.089"

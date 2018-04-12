@@ -15,28 +15,31 @@ public class Professional {
     public static final String FIELD_ADDRESS1 = "address1";
     //public static final String FIELD_ADDRESS2= "address2";
     public static final String FIELD_CITY = "city";
+    public static final String FIELD_TYPE = "type";
 
     private String name;
     private String phone;
     private String address1;
     //private String address2;
     private String city;
+    private String type;
 
     public Professional() {}
 
-    public Professional(String name, String phone,
+    public Professional(String name, String phone, String type,
                 String address1, String city) {
         this.name = name;
         this.phone = phone;
         this.address1 = address1;
         //this.address2 = address2;
         this.city = city;
+        this.type = type;
     }
 
-    public String getFirstName() {
+    public String getName() {
         return name;
     }
-    public void setFirstName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -62,6 +65,13 @@ public class Professional {
     }
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

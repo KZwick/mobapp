@@ -16,11 +16,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.robboba.mha.model.Medication;
 
 import java.lang.reflect.Array;
@@ -34,6 +38,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+    //Boolean Added;
 
     private EditText medName, dos, pillFreq;
     // for Firestore
@@ -59,6 +64,10 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         //back.setOnClickListener(this);
         Button submit = findViewById(R.id.submitButton);
         submit.setOnClickListener(this);
+
+        // hide the button to the list meds intent.
+        Button bList = findViewById(R.id.medListButton);
+        bList.setVisibility(View.GONE);
 
         medName = (EditText) findViewById(R.id.medNameEditText);
         dos = (EditText) findViewById(R.id.dosageEditText);
@@ -150,21 +159,7 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         pillFreq.setText("");
     }
 
-    // writing the data to Firebase
-    /*   data in method
-    private DatePicker datePicker;
-    private Calendar calendar;
-    private TextView dateView;
-    private int year, month, day;
-    private EditText medName, dos, pillFreq;
-
-     ** data in Model for firebase.
-    public static final String FIELD_MEDNAME = "medname";
-    public static final String FIELD_MEDDOSAGE = "meddosage";
-    public static final String FIELD_DOSESPERDAY = "dosesperday";
-    public static final String FIELD_REFILLDATE = "refilldate";
-     */
-    private void submitData(View view){
+    private void submitData(final View view){
 
         // Convert input data to Strings and java.util.Date
         String sMedication = medName.getText().toString();
@@ -172,11 +167,13 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         String sPillsPer = pillFreq.getText().toString();
         // Using java.util.Date
         java.util.Date refillDate = calRefill.getTime();
+        //Added = Boolean.FALSE;
 
         // change data to be ready for Firestore via the Model for the data
         // get the current user and their email
         FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
         String mUserEmail = mUser.getEmail();
+
 
         // put the input data into the Model
         Medication oMed = new Medication();
@@ -184,7 +181,6 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         oMed.setMeddosage(sDosage);
         oMed.setMedinstruct(sPillsPer);
         oMed.setRefilldate(refillDate);
-
         //String sToast = "Med info name: "+ oMed.getMedname()+ " Dose: " + oMed.getMeddosage() + " Instuct: "+oMed.getMedname();
 
         // Get a reference to the Users collection
@@ -195,7 +191,28 @@ public class MedInfo extends AppCompatActivity implements View.OnClickListener{
         // add the data to the above sub collection
         UserMeds.add(oMed);
 
-        Toast.makeText(this, "Medication Added", Toast.LENGTH_LONG).show();
+        // Code to check the Firestore has added the data mFirestore = DB
+        /* not working
+        DocumentReference docRef =  mFirestore.collection("Users").document(mUserEmail);
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot docSnapshot, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("MedAdd", "Listen failed.", e);
+                    return;
+                }
+                if (docSnapshot != null && docSnapshot.exists()) {
+                    Log.d("MedAdd", " data: " + docSnapshot.getData());
+                    Added = Boolean.TRUE;
+                } else {
+                    Log.d("MedAdd", " data: null");
+                }
+            }
+        }); */
+
+        //if(Added ) {
+            Toast.makeText(this, "Medication Added", Toast.LENGTH_LONG).show();
+        //}
 
         clear(view);
 
