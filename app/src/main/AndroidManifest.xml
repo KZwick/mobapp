@@ -37,6 +37,9 @@
         <activity android:name=".MedsList"
             android:parentActivityName=".MedInfo">
         </activity>
+        <activity android:name=".ListExample"
+            android:parentActivityName=".UserReport">
+        </activity>
         <activity android:name=".MainMenu"></activity>
 
         <receiver android:name=".AlertReceiver"/>

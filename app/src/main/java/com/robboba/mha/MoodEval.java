@@ -117,7 +117,7 @@ public class MoodEval extends AppCompatActivity /*implements View.OnClickListene
         // add the data to the above sub collection
         UserMoods.add(oMood);
 
-        Toast.makeText(this, "Medication Added", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Mood Added", Toast.LENGTH_LONG).show();
     }
 
 }

@@ -9,6 +9,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class ListExample extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
+        Log.v("ListExample","The List Example OnCreate started: ");
 
         setContentView(R.layout.activity_list_example);
         ButterKnife.bind(this);
@@ -59,7 +61,8 @@ public class ListExample extends AppCompatActivity {
                 Map<String,String> map = new HashMap<>(); // this is the document ID being created in the program
                 map.put("name",editText.getText().toString()); // this is adding the data
                 // db.collection("group").document().set(map)
-                db.collection("Users").document(mUserEmail).collection("Example").document().set(map)
+                //db.collection("Users").document(mUserEmail).collection("Example").document().set(map)
+                db.collection("group").document().set(map)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
 
                     @Override
@@ -73,8 +76,9 @@ public class ListExample extends AppCompatActivity {
         }); // end of adding Data to the DB
 
         // db.collection("group")
-        db.collection("Users").document(mUserEmail).collection("Example").
-                addSnapshotListener(new EventListener<QuerySnapshot>() {
+        // db.collection("Users").document(mUserEmail).collection("Example")
+        db.collection("group")
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
                 namesList.clear();

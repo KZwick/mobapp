@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +27,10 @@ public class UserReport extends AppCompatActivity /*implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_report);
+
+        // hide the button to the list meds intent.
+        Button bList = findViewById(R.id.buttonList);
+        bList.setVisibility(View.GONE);
 
         dateView = (TextView) findViewById(R.id.textView5);
         dateView2 = (TextView) findViewById(R.id.textView4);
@@ -144,7 +149,8 @@ public class UserReport extends AppCompatActivity /*implements View.OnClickListe
     }
 
     public void clickList(View view){
-        Intent intent21 = new Intent(getApplicationContext(), ListExample.class);
-        startActivity(intent21);
+        Log.v("ListExample","The List Example onClick about to call intent: ");
+        Intent intent25 = new Intent(this, ListExample.class);
+        startActivity(intent25);
     }
 }
