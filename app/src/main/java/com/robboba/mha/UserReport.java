@@ -142,4 +142,9 @@ public class UserReport extends AppCompatActivity /*implements View.OnClickListe
     private void showDate2(int year, int month, int day){
         dateView2.setText(new StringBuilder().append(day).append("/").append(month+1).append("/").append(year));
     }
+
+    public void clickList(View view){
+        Intent intent21 = new Intent(getApplicationContext(), ListExample.class);
+        startActivity(intent21);
+    }
 }
