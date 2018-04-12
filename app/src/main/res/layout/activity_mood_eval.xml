@@ -86,6 +86,7 @@
 
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="348dp"
         android:layout_marginEnd="8dp"
@@ -230,6 +231,8 @@
         android:layout_marginBottom="44dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:onClick="clickSubmit"
         android:background="@drawable/button_submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

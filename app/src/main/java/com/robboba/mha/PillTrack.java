@@ -8,12 +8,20 @@ import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.robboba.mha.model.PIllReminder;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -21,6 +29,8 @@ import java.util.Calendar;
 public class PillTrack extends AppCompatActivity implements /*View.OnClickListener,*/ TimePickerDialog.OnTimeSetListener{
 
     private TextView mTextView;
+    // for Firestore
+    private FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,9 @@ public class PillTrack extends AppCompatActivity implements /*View.OnClickListen
                 timePicker.show(getSupportFragmentManager(), "time picker");
             }
         });
+
+        // Init FireStore
+        mFirestore = FirebaseFirestore.getInstance();
 
         /*Spinner monthSpin = (Spinner) findViewById(R.id.monthSpinner);
 
@@ -124,5 +137,43 @@ public class PillTrack extends AppCompatActivity implements /*View.OnClickListen
 
         alarmManager.cancel(pendingIntent);
         mTextView.setText("Alarm Cancelled");
+    }
+
+    public void clickSubmit(View view){
+        Log.v("Remind","Submit was Clicked ");
+        submitData(view);
+    }
+
+    private void submitData(View view){
+        // Convert input data to Strings and java.util.Date
+        Spinner medNameSpin = (Spinner) findViewById(R.id.medNameSpinner);
+        Spinner dosTakenSpin = (Spinner) findViewById(R.id.dosageSpinner);
+        String sName = medNameSpin.getSelectedItem().toString();
+        String sTaken = dosTakenSpin.getSelectedItem().toString();
+        String sSetRemind = "yes";
+        String sAlarmTime = mTextView.getText().toString();
+
+        // get the current user and their email
+        FirebaseUser mUser= FirebaseAuth.getInstance().getCurrentUser();
+        String mUserEmail = mUser.getEmail();
+
+        // put the input data into the Model
+        PIllReminder oPill = new PIllReminder();
+        oPill.setRemindername(sName);
+        oPill.setTakentoday(sTaken);
+        oPill.setSetreminder(sSetRemind);
+        oPill.setMedtime(sAlarmTime);
+        Log.v("Remind","Moved the data to the Pill Reminder Object: "+oPill);
+
+        // the document using their email, then collection "Medications"
+        CollectionReference PillRemind = mFirestore.collection("Users")
+                .document(mUserEmail).collection("PillReminders");
+        Log.v("Mood","Moved the data to the Mood Object: "+oPill+" email: "+mUserEmail+ " ColRef: "+PillRemind);
+
+        PillRemind.add(oPill);
+
+        Toast.makeText(this, "Pill Reminder Added", Toast.LENGTH_LONG).show();
+
+        // Clear();
     }
 }

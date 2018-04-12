@@ -15,12 +15,14 @@ public class PIllReminder {
     public static final String FIELD_MEDTIME = "medtime";
     public static final String FIELD_SETREMINDER = "setreminder";
     public static final String FIELD_TEKENTODAY = "takentoday";
+    //public static final String FIELD_ALARM_TIME = "alarmtime";
     // public static final String FIELD_MEDSTOTAKE = "medstotake";
 
     private String remindername;
     private String medtime;
     private String setreminder;
     private String takentoday;
+    private String alarmtime;
     // private String medstotake; Array
 
     public PIllReminder() { }
@@ -30,6 +32,7 @@ public class PIllReminder {
         this.medtime = medtime;
         this.setreminder = setreminder;
         this.takentoday = takentoday;
+        //this.alarmtime = alarmtime
         // Array medstotake; Array
     }
 
@@ -60,6 +63,9 @@ public class PIllReminder {
     public void setTakentoday(String takentoday) {
         this.takentoday = takentoday;
     }
+
+    //public String getAlarmtime() {return alarmtime;}
+    //public void setAlarmtime(String alarmtime) {this.alarmtime = alarmtime;}
 
     // Array medstotake; Array
 }
